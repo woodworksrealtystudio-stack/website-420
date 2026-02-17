@@ -21,7 +21,8 @@
         }
         ::selection{background:var(--oak);color:#fff}
         html{scroll-behavior:smooth;touch-action:manipulation}
-        body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;touch-action:manipulation;-webkit-overflow-scrolling:touch;background-image:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(212,162,78,.03),transparent 70%)}
+        body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overscroll-behavior-x:none;background-image:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(212,162,78,.03),transparent 70%)}
+        .page-wrapper{overflow-x:hidden}
         body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:128px}
         ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--oak-dark);border-radius:3px}
 
@@ -43,7 +44,7 @@
         .nav-cta:hover{background:var(--oak)!important;color:#fff!important;box-shadow:0 0 24px rgba(212,162,78,.3)}
 
         /* HERO */
-        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+        .hero{min-height:100vh;min-height:100dvh;display:flex;align-items:center;position:relative;overflow:hidden}
         .hero-bg{position:absolute;inset:0;z-index:0}
         .orb-parallax{position:absolute;inset:0;will-change:transform;pointer-events:none}
         .hero-orb{position:absolute;border-radius:50%;filter:blur(130px);animation:float 14s ease-in-out infinite}
@@ -202,7 +203,6 @@
             .flow-branch-lines,.flow-merge{display:none}.flow-branch-cards{padding-top:0}
             .flow-result{flex-direction:column;gap:.75rem}.flow-result-divider{width:40px;height:1px}
             .nav-links a:not(.nav-cta):not(.nav-social){display:none}
-            body::after{display:none}
         }
         @media(max-width:640px){.footer-inner{flex-direction:column;gap:1.5rem;text-align:center}}
 
@@ -298,6 +298,7 @@
     </style>
 </head>
 <body>
+<div class="page-wrapper">
     <div class="cursor-aura" id="cursorAura"></div>
     <!-- Stars -->
     <div class="stars-container" id="stars"></div>
@@ -582,6 +583,7 @@
             <span>Book a Call</span>
         </button>
     </div>
+</div>
 
     <script>
         // ═══ NAV SCROLL + FLOATING CTA ═══
