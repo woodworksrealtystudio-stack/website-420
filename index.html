@@ -6,7 +6,7 @@
     <title>Woodworks Realty Studio | Custom AI Automation for Realtors</title>
     <meta name="description" content="Woodworks Realty Studio builds custom AI automation systems for boutique real estate brokerages — content, emails, follow-ups, scheduling — all running on autopilot.">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- Calendly loaded lazily via JS when booking section is near viewport -->
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         :root{
@@ -20,7 +20,7 @@
             --mono:'JetBrains Mono',monospace;
         }
         ::selection{background:var(--oak);color:#fff}
-        html{scroll-behavior:smooth;touch-action:manipulation}
+        html{scroll-behavior:smooth}
         body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overscroll-behavior-x:none;background-image:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(212,162,78,.03),transparent 70%)}
         .page-wrapper{overflow-x:hidden}
         body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:128px}
@@ -203,8 +203,23 @@
             .flow-branch-lines,.flow-merge{display:none}.flow-branch-cards{padding-top:0}
             .flow-result{flex-direction:column;gap:.75rem}.flow-result-divider{width:40px;height:1px}
             .nav-links a:not(.nav-cta):not(.nav-social){display:none}
+            .stars-container{position:absolute}
+            .nav{padding:1rem 1rem}
+            .nav.scrolled{padding:.7rem 1rem}
+            .nav-logo img{height:40px}
+            .nav-logo-text{font-size:.55rem;letter-spacing:.12em}
+            .nav-links{gap:.75rem}
+            .nav-social svg{width:14px;height:14px}
+            .nav-cta{padding:.4rem .9rem;font-size:.65rem}
         }
         @media(max-width:640px){.footer-inner{flex-direction:column;gap:1.5rem;text-align:center}}
+        @media(max-width:400px){
+            .nav{padding:.8rem .75rem}
+            .nav-logo-text{display:none}
+            .nav-links{gap:.5rem}
+            .nav-social svg{width:12px;height:12px}
+            .nav-cta{padding:.35rem .7rem;font-size:.6rem}
+        }
 
         /* REVEAL */
         .reveal{opacity:0;transform:translateY(35px);transition:all .8s cubic-bezier(.23,1,.32,1)}
@@ -261,7 +276,7 @@
         .booking-header h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.12;margin-bottom:.75rem}
         .booking-header h2 em{font-style:italic;color:var(--oak)}
         .booking-header p{color:var(--text-muted);font-size:1rem;font-weight:300;line-height:1.7}
-        .calendly-inline-widget{min-width:320px;height:660px;border-radius:16px;overflow:hidden;overflow-y:hidden!important}
+        .calendly-inline-widget{min-width:320px;height:660px;border-radius:16px;overflow:hidden;overflow-y:hidden!important;touch-action:pan-y;overscroll-behavior:contain}
         .calendly-inline-widget iframe{overflow:hidden!important}
 
         /* MODAL */
@@ -597,6 +612,21 @@
         // ═══ REVEAL OBSERVER ═══
         const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
         document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+        // ═══ LAZY-LOAD CALENDLY ═══
+        var calendlyLoaded = false;
+        var calendlyObserver = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting && !calendlyLoaded) {
+                calendlyLoaded = true;
+                var s = document.createElement('script');
+                s.src = 'https://assets.calendly.com/assets/external/widget.js';
+                s.async = true;
+                document.head.appendChild(s);
+                calendlyObserver.disconnect();
+            }
+        }, { rootMargin: '200px' });
+        var bookingEl = document.getElementById('booking');
+        if (bookingEl) calendlyObserver.observe(bookingEl);
 
         // Generate stars
         const starsEl = document.getElementById('stars');
