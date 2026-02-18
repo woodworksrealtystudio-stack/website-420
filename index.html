@@ -6,7 +6,7 @@
     <title>Woodworks Realty Studio | Custom AI Automation for Realtors</title>
     <meta name="description" content="Woodworks Realty Studio builds custom AI automation systems for boutique real estate brokerages — content, emails, follow-ups, scheduling — all running on autopilot.">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <!-- Calendly loaded lazily via JS when booking section is near viewport -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         :root{
@@ -278,25 +278,20 @@
         .booking-header h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.12;margin-bottom:.75rem}
         .booking-header h2 em{font-style:italic;color:var(--oak)}
         .booking-header p{color:var(--text-muted);font-size:1rem;font-weight:300;line-height:1.7}
-        .calendly-inline-widget{min-width:320px;height:660px;border-radius:16px;overflow:hidden;overflow-y:hidden!important;touch-action:pan-y;overscroll-behavior:contain}
-        .calendly-inline-widget iframe{overflow:hidden!important}
+
+
 
         /* MODAL */
-        .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(6,11,16,.85);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-        .modal-overlay.open{opacity:1;pointer-events:auto}
-        .modal-content{background:var(--bg-el);border:1px solid var(--border);border-radius:20px;padding:2rem;max-width:580px;width:92%;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .3s}
-        .modal-overlay.open .modal-content{transform:translateY(0)}
-        .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;transition:color .3s;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;z-index:2}
-        .modal-close:hover{color:#fff;background:rgba(255,255,255,.05)}
-        .modal-calendly{min-width:280px;height:580px;border-radius:12px;overflow:hidden}
+
+
 
         /* FLOATING CTA */
         .floating-cta{position:fixed;bottom:2rem;right:2rem;z-index:99;opacity:0;transform:translateY(20px);transition:all .4s;pointer-events:none}
         .floating-cta.visible{opacity:1;transform:translateY(0);pointer-events:auto}
         @media(max-width:640px){
             .floating-cta{bottom:1.25rem;right:1.25rem}
-            .modal-content{padding:1.5rem 1rem;width:95%}
-            .modal-calendly{height:520px}
+
+
         }
 
         /* CINEMATIC TEXT REVEAL */
@@ -549,7 +544,7 @@
             <h2 class="reveal reveal-d1">Book Your <em>Strategy Call</em></h2>
             <p class="reveal reveal-d2">15 minutes. No pitch. Just a plan for your brokerage.</p>
         </div>
-        <div class="reveal reveal-d3 calendly-inline-widget" data-url="https://calendly.com/woodworksrealtystudio/30min?hide_gdpr_banner=1&background_color=0c1218&text_color=e8ecf0&primary_color=2196b8" data-resize="true" style="min-width:320px;height:660px;"></div>
+        <div class="reveal reveal-d3" style="text-align:center"><button class="btn-primary" onclick="openCalendly();return false;" style="padding:1.2rem 3rem;font-size:1rem"><span>Book Your Strategy Call</span></button></div>
     </section>
 
     <!-- CTA -->
@@ -582,17 +577,7 @@
             </div>
         </div>
     </footer>
-    <!-- BOOKING MODAL -->
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-            <div class="booking-header" style="margin-bottom:1rem;">
-                <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:700;margin-bottom:.5rem;">Book Your <em style="color:var(--oak);font-style:italic;">Strategy Call</em></h2>
-                <p style="color:var(--text-muted);font-size:.85rem;font-weight:300;">15 minutes. No pitch. Just a plan for your brokerage.</p>
-            </div>
-            <div class="modal-calendly calendly-inline-widget" data-url="https://calendly.com/woodworksrealtystudio/30min?hide_gdpr_banner=1&background_color=0c1218&text_color=e8ecf0&primary_color=2196b8" data-resize="true" style="min-width:280px;height:580px;"></div>
-        </div>
-    </div>
+
 
     <!-- FLOATING CTA -->
     <div class="floating-cta" id="floatingCta">
@@ -615,20 +600,20 @@
         const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
         document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-        // ═══ LAZY-LOAD CALENDLY ═══
-        var calendlyLoaded = false;
-        var calendlyObserver = new IntersectionObserver(function(entries) {
-            if (entries[0].isIntersecting && !calendlyLoaded) {
-                calendlyLoaded = true;
-                var s = document.createElement('script');
-                s.src = 'https://assets.calendly.com/assets/external/widget.js';
-                s.async = true;
-                document.head.appendChild(s);
-                calendlyObserver.disconnect();
-            }
-        }, { rootMargin: '200px' });
-        var bookingEl = document.getElementById('booking');
-        if (bookingEl) calendlyObserver.observe(bookingEl);
+        // ═══ CALENDLY POPUP (lazy-loaded on first click) ═══
+        var calendlyReady = false;
+        function loadCalendly(cb) {
+            if (calendlyReady) { cb(); return; }
+            var s = document.createElement('script');
+            s.src = 'https://assets.calendly.com/assets/external/widget.js';
+            s.onload = function() { calendlyReady = true; cb(); };
+            document.head.appendChild(s);
+        }
+        function openCalendly() {
+            loadCalendly(function() {
+                Calendly.initPopupWidget({url:'https://calendly.com/woodworksrealtystudio/30min?hide_gdpr_banner=1&background_color=0c1218&text_color=e8ecf0&primary_color=2196b8'});
+            });
+        }
 
         // Generate stars
         const starsEl = document.getElementById('stars');
@@ -887,27 +872,10 @@
             card.addEventListener('click', () => updateFlowchart(card.dataset.flow));
         });
 
-        // ═══ MODAL ═══
-        function openModal() {
-            document.getElementById('bookingModal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            document.getElementById('bookingModal').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-        document.getElementById('bookingModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
         // ═══ CTA CLICK HANDLERS ═══
-        document.getElementById('navBookBtn').addEventListener('click', openModal);
-        document.getElementById('heroBookBtn').addEventListener('click', openModal);
-        document.getElementById('floatingCtaBtn').addEventListener('click', openModal);
+        document.getElementById('navBookBtn').addEventListener('click', openCalendly);
+        document.getElementById('heroBookBtn').addEventListener('click', openCalendly);
+        document.getElementById('floatingCtaBtn').addEventListener('click', openCalendly);
         document.getElementById('ctaBookBtn').addEventListener('click', function() {
             document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
         });
