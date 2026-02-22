@@ -386,46 +386,10 @@
                 <p>Unlike cold lead-gen, this captures warm leads — people already browsing your listings. Branded posts, captions in your voice, and a full content calendar that turns property views into real conversations.</p>
                 <span class="cap-card-hint">See workflow →</span>
             </div>
-            <div class="cap-card reveal reveal-d2" data-flow="email">
-                <span class="cap-card-emoji">📧</span>
-                <h3>Email & Follow-Ups</h3>
-                <p>Lead nurture sequences, open house follow-ups, and just-listed emails that write and send themselves in your tone.</p>
-                <span class="cap-card-hint">See workflow →</span>
-            </div>
-            <div class="cap-card reveal reveal-d3" data-flow="listings">
-                <span class="cap-card-emoji">✍️</span>
-                <h3>Listing Descriptions</h3>
-                <p>Paste your MLS data and get polished, voice-matched listing copy ready to go — no blank page, no writer's block.</p>
-                <span class="cap-card-hint">See workflow →</span>
-            </div>
-            <div class="cap-card reveal reveal-d4" data-flow="scheduling">
-                <span class="cap-card-emoji">📅</span>
-                <h3>Content Scheduling</h3>
-                <p>A month of social content planned, created, and scheduled before your morning coffee. Across every platform you use.</p>
-                <span class="cap-card-hint">See workflow →</span>
-            </div>
-            <div class="cap-card reveal reveal-d5" data-flow="crm">
-                <span class="cap-card-emoji">🔗</span>
-                <h3>CRM & Tool Wiring</h3>
-                <p>We plug into your existing tools — your CRM, your email, your calendar — and make them work together without you lifting a finger.</p>
-                <span class="cap-card-hint">See workflow →</span>
-            </div>
-            <div class="cap-card reveal reveal-d1" data-flow="docs">
-                <span class="cap-card-emoji">📑</span>
-                <h3>Contract & Disclosure Analysis</h3>
-                <p>Drop a 100-page HOA doc or strata report into a folder. Our AI instantly extracts key contingencies, pet policies, and red flags. True luxury concierge service.</p>
-                <span class="cap-card-hint">See workflow →</span>
-            </div>
-            <div class="cap-card reveal reveal-d2" data-flow="voice">
-                <span class="cap-card-emoji">📞</span>
-                <h3>Inbound Voice AI Receptionist</h3>
-                <p>A bespoke, natural-sounding AI that answers late-night calls from international luxury buyers, pre-qualifies them, and books showings directly onto your calendar.</p>
-                <span class="cap-card-hint">See workflow →</span>
-            </div>
-            <div class="cap-card reveal reveal-d3" data-flow="briefing">
-                <span class="cap-card-emoji">🔍</span>
-                <h3>Hyper-Personalized Client Briefings</h3>
-                <p>Before you pick up the phone, our system scrapes the web and property details to generate a highly personalized, one-page briefing document on your new lead.</p>
+            <div class="cap-card reveal reveal-d2" data-flow="spreadsheet">
+                <span class="cap-card-emoji">📊</span>
+                <h3>Claude + Spreadsheet Intelligence</h3>
+                <p>Your 20-year deal history, pipeline tracker, or commission log — connected to Claude. Ask it anything: trends, forecasts, outliers. No new software. No data re-entry. Just answers.</p>
                 <span class="cap-card-hint">See workflow →</span>
             </div>
             <div class="cap-card highlighted reveal reveal-d4" data-flow="custom">
@@ -644,132 +608,25 @@
                     { num: '100%', label: 'Your Voice' }
                 ]
             },
-            email: {
-                title: 'Email & Follow-Ups,',
-                titleEm: 'on autopilot.',
-                subtitle: 'Never let a lead slip through again. Your follow-up sequences run themselves — in your voice, on your schedule.',
-                trigger: { emoji: '📩', label: 'Trigger', heading: 'A New Lead Comes In', desc: 'From your website, Zillow, open house sign-in — wherever they find you.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'Lead Gets Classified & Routed', desc: 'Buyer, seller, investor — tagged, scored, and slotted into the right sequence.' },
+            spreadsheet: {
+                title: 'Claude + Spreadsheet',
+                titleEm: 'Intelligence.',
+                subtitle: 'Your historical data. Instant AI answers.',
+                trigger: { emoji: '📊', label: 'You', heading: 'You Ask a Question', desc: 'In plain English. About trends, forecasts, outliers — anything in your data.' },
+                engine: { emoji: '⚙️', label: 'Your System', heading: 'Claude Reads Your Sheet & Analyzes', desc: 'No new data entry. No new systems. Claude connects to your existing spreadsheet.' },
                 outputs: [
-                    { emoji: '📧', label: 'Sends', heading: 'Personalized First Touch', desc: 'A warm, on-brand email goes out within minutes — not hours.' },
-                    { emoji: '🔄', label: 'Schedules', heading: 'Drip Follow-Up Sequence', desc: 'Timed emails on day 1, 3, 7, 14 — until they respond or book.' },
-                    { emoji: '🔔', label: 'Alerts', heading: 'Agent Notification', desc: 'You get pinged only when a lead is hot and ready to talk.' }
+                    { emoji: '📈', label: 'Finds', heading: 'Trends & Patterns', desc: 'Historical data analyzed for commission patterns, seasonal peaks, and buyer profiles.' },
+                    { emoji: '🔮', label: 'Forecasts', heading: 'Future Pipeline', desc: 'Predicts next month's closings, pipeline value, and optimal lead sources.' },
+                    { emoji: '🚩', label: 'Flags', heading: 'Anomalies & Outliers', desc: 'Alerts you to unusual activity, bottlenecks, and untapped opportunities.' }
                 ],
-                result: { emoji: '🤝', heading: 'Every Lead Gets Nurtured — Without You Typing a Word', desc: 'Your pipeline stays warm and no opportunity falls through the cracks.' },
+                result: { emoji: '💡', heading: 'Your Business Data — Made Smart', desc: 'Stop guessing. Get instant, data-driven answers to any question about your business.' },
                 stats: [
-                    { num: '5min', label: 'Response Time' },
-                    { num: '100%', label: 'Follow-Up Rate' },
-                    { num: '0', label: 'Leads Lost' }
+                    { num: '20yr', label: 'of Data' },
+                    { num: '0', label: 'Re-Entry' },
+                    { num: 'Any', label: 'Question' }
                 ]
             },
-            listings: {
-                title: 'Listing Descriptions,',
-                titleEm: 'written instantly.',
-                subtitle: "Paste your MLS data and get polished, voice-matched listing copy — no blank page, no writer's block.",
-                trigger: { emoji: '📋', label: 'You', heading: 'You Paste MLS Data', desc: 'Drop in the property details. Address, specs, features — whatever you have.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'AI Analyzes Property + Neighborhood', desc: 'Cross-references comps, local highlights, and your writing style to craft the copy.' },
-                outputs: [
-                    { emoji: '✍️', label: 'Writes', heading: 'Polished Description', desc: 'Full listing copy that sounds like you wrote it on your best day.' },
-                    { emoji: '🔍', label: 'Optimizes', heading: 'SEO-Ready Version', desc: 'Keyword-rich copy for your website and listing portals.' },
-                    { emoji: '📱', label: 'Creates', heading: 'Social Media Snippet', desc: 'A punchy caption ready to post with the listing photos.' }
-                ],
-                result: { emoji: '📝', heading: 'Every Listing Sounds Like You Wrote It Yourself', desc: 'Consistent, professional copy for every property — in seconds.' },
-                stats: [
-                    { num: '60s', label: 'Draft Time' },
-                    { num: '100%', label: 'Your Voice' },
-                    { num: '0', label: "Writer's Block" }
-                ]
-            },
-            scheduling: {
-                title: 'Content Scheduling,',
-                titleEm: 'fully automated.',
-                subtitle: 'A full month of social content — planned, created, and scheduled before your morning coffee.',
-                trigger: { emoji: '📆', label: 'Trigger', heading: 'A New Month Starts', desc: 'Your system kicks off automatically — no reminders, no to-do lists.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'Content Calendar Gets Built', desc: 'Topics, holidays, market trends, and your brand voice — all factored in.' },
-                outputs: [
-                    { emoji: '📱', label: 'Creates', heading: 'Platform-Specific Posts', desc: 'Tailored content for Instagram, Facebook, LinkedIn — each one optimized.' },
-                    { emoji: '🎨', label: 'Designs', heading: 'Visual Assets', desc: 'Branded graphics and carousels created to match each post.' },
-                    { emoji: '⏰', label: 'Schedules', heading: 'Auto-Published', desc: 'Every post queued and published at the optimal time for engagement.' }
-                ],
-                result: { emoji: '🗓️', heading: 'A Month of Content Done Before Your Coffee', desc: 'Consistent posting across every platform without lifting a finger.' },
-                stats: [
-                    { num: '30+', label: 'Posts Planned' },
-                    { num: 'All', label: 'Platforms' },
-                    { num: '0', label: 'Hours Spent' }
-                ]
-            },
-            crm: {
-                title: 'CRM & Tool Wiring,',
-                titleEm: 'fully connected.',
-                subtitle: 'Your CRM, email, calendar, and tools — finally talking to each other without you playing middleman.',
-                trigger: { emoji: '💼', label: 'You', heading: 'You Use Your Tools Like Normal', desc: 'No new apps to learn. No extra steps. Just work the way you already do.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'Integrations Sync Everything', desc: 'Behind the scenes, your tools are connected and sharing data in real time.' },
-                outputs: [
-                    { emoji: '📊', label: 'Updates', heading: 'CRM Updated Automatically', desc: 'New leads, status changes, notes — logged without you touching a thing.' },
-                    { emoji: '📅', label: 'Syncs', heading: 'Calendar Synced', desc: 'Showings, calls, and follow-ups land on your calendar instantly.' },
-                    { emoji: '📧', label: 'Logs', heading: 'Emails Tracked', desc: 'Every client email threaded and attached to the right contact.' }
-                ],
-                result: { emoji: '🔗', heading: 'All Your Tools Talk to Each Other — Finally', desc: 'Zero manual data entry. Everything in sync. Nothing slips through.' },
-                stats: [
-                    { num: '0', label: 'Manual Entry' },
-                    { num: '100%', label: 'Synced' },
-                    { num: 'Real', label: 'Time' }
-                ]
-            },
-            docs: {
-                title: 'Contract & Disclosure Analysis,',
-                titleEm: 'instant clarity.',
-                subtitle: 'Stop spending hours buried in legal documents. Drop them in a folder — your AI concierge handles the rest.',
-                trigger: { emoji: '📄', label: 'You', heading: 'You Upload a PDF', desc: 'HOA docs, strata reports, disclosure packages — drop them into your secure folder.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'AI Analyzes Every Clause', desc: 'Natural language processing scans the full document, cross-referencing known red-flag patterns and contingencies.' },
-                outputs: [
-                    { emoji: '🚩', label: 'Flags', heading: 'Red Flags Extracted', desc: 'Special assessments, litigation history, restrictive covenants — surfaced instantly.' },
-                    { emoji: '🐾', label: 'Details', heading: 'Key Policies Identified', desc: 'Pet policies, rental restrictions, noise bylaws — the things your buyers actually care about.' },
-                    { emoji: '📋', label: 'Delivers', heading: 'Executive Summary Sent', desc: 'A clean, one-page brief delivered to your inbox — ready to share with your client.' }
-                ],
-                result: { emoji: '✅', heading: 'Hours of Reading — Done in Seconds', desc: 'Every document summarized, every red flag caught, every client impressed.' },
-                stats: [
-                    { num: '100+', label: 'Pages Scanned' },
-                    { num: '< 60s', label: 'Analysis Time' },
-                    { num: '0', label: 'Missed Clauses' }
-                ]
-            },
-            voice: {
-                title: 'Inbound Voice AI,',
-                titleEm: 'always on call.',
-                subtitle: 'Your bespoke AI receptionist answers every call — day or night — so you never miss a luxury buyer.',
-                trigger: { emoji: '📱', label: 'Trigger', heading: 'Inbound Call Comes In', desc: 'A prospective buyer calls after hours, from overseas, or while you\'re in a showing.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'Voice AI Answers Naturally', desc: 'A warm, natural-sounding AI greets the caller by name and engages in real conversation — not a phone tree.' },
-                outputs: [
-                    { emoji: '🎯', label: 'Qualifies', heading: 'Buyer Pre-Qualified', desc: 'Budget, timeline, property preferences — captured conversationally, not interrogated.' },
-                    { emoji: '📅', label: 'Books', heading: 'Showing Booked on Calendar', desc: 'Qualified buyers get a showing booked directly onto your Calendly — no back-and-forth.' },
-                    { emoji: '🔔', label: 'Alerts', heading: 'You Get Briefed', desc: 'A full call summary and lead score hits your phone instantly.' }
-                ],
-                result: { emoji: '🌙', heading: 'Every Call Answered — Even at 2 AM', desc: 'International luxury buyers handled with white-glove service, around the clock.' },
-                stats: [
-                    { num: '24/7', label: 'Availability' },
-                    { num: '0', label: 'Missed Calls' },
-                    { num: '100%', label: 'Pre-Qualified' }
-                ]
-            },
-            briefing: {
-                title: 'Client Briefings,',
-                titleEm: 'hyper-personalized.',
-                subtitle: 'Walk into every call armed with everything you need to know — automatically researched and beautifully formatted.',
-                trigger: { emoji: '👤', label: 'Trigger', heading: 'New Lead Captured', desc: 'A new lead enters your system — from any source, any channel.' },
-                engine: { emoji: '⚙️', label: 'Your System', heading: 'AI Scrapes Web & Socials', desc: 'LinkedIn, Instagram, public records, property history — your AI assembles a full profile in seconds.' },
-                outputs: [
-                    { emoji: '🏡', label: 'Matches', heading: 'Cross-References Properties', desc: 'Links the lead\'s preferences to your active listings and neighborhood data.' },
-                    { emoji: '📊', label: 'Builds', heading: 'One-Page Briefing Created', desc: 'A polished, scannable document with talking points, ice-breakers, and property matches.' },
-                    { emoji: '📧', label: 'Sends', heading: 'Brief Sent to Agent', desc: 'Delivered to your inbox or CRM before you pick up the phone.' }
-                ],
-                result: { emoji: '🎯', heading: 'Every Call Feels Like You\'ve Known Them for Years', desc: 'Personalized prep that turns cold leads into warm conversations.' },
-                stats: [
-                    { num: '< 30s', label: 'Research Time' },
-                    { num: '100%', label: 'Personalized' },
-                    { num: '1 Page', label: 'Briefing' }
-                ]
-            },
+
             custom: {
                 title: 'Custom Builds,',
                 titleEm: 'built for you.',
